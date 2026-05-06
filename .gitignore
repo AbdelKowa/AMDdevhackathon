@@ -30,6 +30,9 @@ Thumbs.db
 *.swp
 *.swo
 
+# Claude Code session state
+.claude/
+
 # Logs & outputs
 logs/
 *.log
