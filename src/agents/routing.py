@@ -5,9 +5,7 @@ from crewai import Agent
 
 from src.llm import amd_llm
 
-# TODO(Person A/B): import once src/tools/ exists.
-# from src.tools.read_world_state import read_world_state
-# from src.tools.propose_routes import propose_routes
+from src.tools import propose_routes, read_world_state
 
 routing_agent = Agent(
     role="Initial Route Planner",
@@ -22,10 +20,7 @@ routing_agent = Agent(
         "valid: no blocked nodes, every delivery covered, every route "
         "returns to the depot."
     ),
-    tools=[
-        # read_world_state,
-        # propose_routes,
-    ],
+    tools=[read_world_state, propose_routes],
     llm=amd_llm(),
     allow_delegation=False,
     verbose=True,

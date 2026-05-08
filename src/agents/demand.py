@@ -5,8 +5,7 @@ from crewai import Agent
 
 from src.llm import amd_llm
 
-# TODO(Person A/B): import once src/tools/ exists.
-# from src.tools.read_world_state import read_world_state
+from src.tools import read_world_state
 
 demand_agent = Agent(
     role="Delivery Demand Planner",
@@ -21,9 +20,7 @@ demand_agent = Agent(
         "schedule deliveries to nodes the simulation reports as active and "
         "reachable, and you never duplicate a request."
     ),
-    tools=[
-        # read_world_state,
-    ],
+    tools=[read_world_state],
     llm=amd_llm(),
     allow_delegation=False,
     verbose=True,
