@@ -16,7 +16,7 @@ Three people. Stay inside your area unless you've coordinated with the owner.
 |---|---|---|
 | [AbdelKowa](https://github.com/AbdelKowa) — Person A | AI & Agents (4 agents + LLM glue) | `src/agents/`, `src/tasks/`, `src/llm.py`, `src/main.py` |
 | [Nate1396](https://github.com/Nate1396) — Person B | Backend & Simulation | `src/sim/`, `src/tools/` |
-| *teammate* — Person C | Frontend & Demo | `dashboard/`, demo script |
+| [ArshMow67](https://github.com/ArshMow67) — Person C | Frontend & Demo | `dashboard/`, demo script |
 
 The contract between Person A and Person B is the simulation API in `src/sim/` — agents call it through `src/tools/`, they don't reach into sim internals. See [`docs/architecture.md`](docs/architecture.md).
 
