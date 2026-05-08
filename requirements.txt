@@ -1,5 +1,6 @@
 crewai>=0.28.0
 crewai-tools>=0.1.0
+litellm>=1.40.0       # required by src/llm.py's openai/<model> routing prefix
 langchain>=0.2.0
 langchain-community>=0.2.0
 openai>=1.0.0          # used as the API client for AMD-hosted models (OpenAI-compatible)
