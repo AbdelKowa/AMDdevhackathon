@@ -38,16 +38,9 @@ def _placeholder_world_snapshot() -> dict[str, Any]:
     }
 
 
-def _world_snapshot() -> dict[str, Any]:
-    try:
-        from src.sim import World
-    except ImportError:
-        print("[main] src/sim/ not built yet — using placeholder world snapshot.")
-        return _placeholder_world_snapshot()
-    # model_dump() so the live path returns the same dict shape as the
-    # placeholder — keeps CrewAI's {world_snapshot} prompt rendering clean
-    # and lets the artifact be written via plain json.dumps().
-    return World(seed=42, n_nodes=20).snapshot().model_dump()
+# _world_snapshot() removed: now that src/sim/ and src/tools/ both exist,
+# the live path always builds a real World and binds it via set_world() so
+# the tools can read/write it. See run() below.
 
 
 def _parse_stage(raw: str) -> Any:
@@ -116,12 +109,18 @@ def run(disruption_event: dict[str, Any] | None = None) -> dict[str, Any]:
     from src.agents.routing import routing_agent
     from src.agents.efficiency import efficiency_agent
     from src.agents.disruption import disruption_agent
+    from src.sim import World
     from src.tasks.demand import demand_task
     from src.tasks.routing import routing_task
     from src.tasks.efficiency import efficiency_task
     from src.tasks.disruption import disruption_task
+    from src.tools import set_world
 
-    world = _world_snapshot()
+    # Build the world once and bind it so the tools (read_world_state /
+    # propose_routes / inject_disruption) all read from the same instance.
+    sim_world = World(seed=42, n_nodes=20)
+    set_world(sim_world)
+    world = sim_world.snapshot().model_dump()
     inputs: dict[str, Any] = {"world_snapshot": world}
 
     if disruption_event is None:
