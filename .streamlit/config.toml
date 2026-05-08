@@ -1,0 +1,15 @@
+# Dark, pro-looking dashboard theme.
+# AMD red as the accent (#ED1C24) since this runs on AMD Developer Cloud.
+[theme]
+base = "dark"
+primaryColor = "#ED1C24"
+backgroundColor = "#0E1117"
+secondaryBackgroundColor = "#1A1D24"
+textColor = "#FAFAFA"
+font = "sans serif"
+
+[server]
+headless = false
+
+[browser]
+gatherUsageStats = false

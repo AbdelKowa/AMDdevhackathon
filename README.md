@@ -22,8 +22,9 @@ The contract between Person A and Person B is the simulation API in `src/sim/` â
 
 ## Tech Stack
 - **Framework:** CrewAI
-- **Models:** open-source (Llama 3 / Mistral) via AMD Developer Cloud (OpenAI-compatible API)
-- **Frontend:** Streamlit
+- **Inference:** SGLang on AMD Developer Cloud (OpenAI-compatible API)
+- **Model:** Llama-3.1-8B-Instruct (team default â€” fallback Llama-3.0-8B if 3.1 unavailable)
+- **Frontend:** Streamlit + Plotly
 - **Compute:** $100 AMD Developer Cloud credits
 
 ## Setup
