@@ -12,6 +12,7 @@ from src.sim.models import (
     Route,
     WorldState,
 )
+from src.sim.world import World
 
 __all__ = [
     "DeliveryRequest",
@@ -19,5 +20,6 @@ __all__ = [
     "Metrics",
     "Node",
     "Route",
+    "World",
     "WorldState",
 ]

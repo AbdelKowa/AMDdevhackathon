@@ -40,11 +40,14 @@ def _placeholder_world_snapshot() -> dict[str, Any]:
 
 def _world_snapshot() -> dict[str, Any]:
     try:
-        from src.sim import World  # type: ignore[import-not-found]
+        from src.sim import World
     except ImportError:
         print("[main] src/sim/ not built yet — using placeholder world snapshot.")
         return _placeholder_world_snapshot()
-    return World(seed=42, n_nodes=20).snapshot()
+    # model_dump() so the live path returns the same dict shape as the
+    # placeholder — keeps CrewAI's {world_snapshot} prompt rendering clean
+    # and lets the artifact be written via plain json.dumps().
+    return World(seed=42, n_nodes=20).snapshot().model_dump()
 
 
 def _parse_stage(raw: str) -> Any:
