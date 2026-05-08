@@ -5,8 +5,7 @@ from crewai import Agent
 
 from src.llm import amd_llm
 
-# TODO(Person A/B): import once src/tools/ exists.
-# from src.tools.propose_routes import propose_routes
+from src.tools import propose_routes
 
 efficiency_agent = Agent(
     role="Route Efficiency Optimizer",
@@ -21,9 +20,7 @@ efficiency_agent = Agent(
         "using the Metrics returned by propose_routes, and you only commit "
         "to a change if it strictly improves the totals."
     ),
-    tools=[
-        # propose_routes,
-    ],
+    tools=[propose_routes],
     llm=amd_llm(),
     allow_delegation=False,
     verbose=True,
